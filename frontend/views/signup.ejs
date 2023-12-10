@@ -1,11 +1,11 @@
 <!-- Page header -->
-<header class="masthead" style="background-image: url('/imgs/login-bg.jpg')">
+<header class="masthead" style="background-image: url('/imgs/signup-bg.jpg')">
   <div class="container position-relative px-4 px-lg-5">
     <div class="row gx-4 gx-lg-5 justify-content-center">
       <div class="col-md-10 col-lg-8 col-xl-7">
         <div class="page-heading">
-          <h1>Login</h1>
-          <span class="subheading"> Login to order your pizza</span>
+          <h1>Sign up</h1>
+          <span class="subheading"> Sign up to order your pizza</span>
         </div>
       </div>
     </div>
@@ -16,9 +16,9 @@
   <div class="container px-4 px-lg-5">
     <div class="row gx-4 gx-lg-5 justify-content-center">
       <div class="col-md-10 col-lg-8 col-xl-7">
-        <p>Login to order your pizza</p>
+        <p>Sign up</p>
         <div class="my-5">
-          <form id="login">
+          <form id="signup">
             <div class="form-floating">
               <input
                 class="form-control"
@@ -26,7 +26,7 @@
                 type="text"
                 placeholder="Enter your username..."
               />
-              <label for="name">Username</label>
+              <label for="username">Username</label>
             </div>
             <div class="form-floating">
               <input
@@ -35,12 +35,20 @@
                 type="password"
                 placeholder="Enter your password..."
               />
+
               <label for="password">Password</label>
             </div>
-            <br />
-            <div class="alert alert-info" role="alert">
-              Do not have account? Please <a href="/signup">sign up</a>
+            <div class="form-floating">
+              <input
+                class="form-control"
+                id="repeatedPassword"
+                type="password"
+                placeholder="Please repeat you password"
+              />
+
+              <label for="repeatedPassword">Repeated Password</label>
             </div>
+            <br />
             <button
               class="btn btn-primary text-uppercase"
               id="submitButton"
@@ -56,4 +64,4 @@
 </main>
 
 <script src="/js/validation.js"></script>
-<script src="/js/login.js"></script>
+<script src="/js/signup.js"></script>

@@ -1,4 +1,3 @@
-
 function changePrice(customDetails, fromCustom = true) {
   let totalPrice = customDetails.price;
 
@@ -39,68 +38,78 @@ function showOrderDialog(customDetails) {
     $("#price").val(customDetails.price.toFixed(2));
   }
 
-  $("#sizeLayout").attr("hidden", customDetails.topping == undefined)
-  $("#toppingLayout").attr("hidden", customDetails.topping == undefined)
+  $("#sizeLayout").attr("hidden", customDetails.topping == undefined);
+  $("#toppingLayout").attr("hidden", customDetails.topping == undefined);
   $("#size").val(customDetails.size);
   $("#topping").val(customDetails.topping);
 
   $("#topping").val(customDetails.topping);
-  $("#overlay-order").data("price", customDetails.totalPrice)
+  $("#overlay-order").data("price", customDetails.totalPrice);
   $("#overlay-order").fadeIn();
 
   $("#formOrder").submit(function (evt) {
     evt.preventDefault();
-    $.post("http://localhost:4000/api/order", {
-      pizza: customDetails.id,
-      size: customDetails.sizeId,
-      topping: customDetails.toppingId,
-      name: $("#firstName") + " " + $("#lastName"),
-      address: $("#address") + ", " + $("#city") + ", " + $("#state") + " " + $("#zip"),
-    }, function (response, status) {
-      if (status == 'success') {
-        $("#overlay-order").fadeOut();
+    $.post(
+      "http://localhost:4000/api/order",
+      {
+        pizza: customDetails.id,
+        size: customDetails.sizeId,
+        topping: customDetails.toppingId,
+        name: $("#firstName") + " " + $("#lastName"),
+        address:
+          $("#address") +
+          ", " +
+          $("#city") +
+          ", " +
+          $("#state") +
+          " " +
+          $("#zip"),
+      },
+      function (response, status) {
+        if (status == "success") {
+          $("#overlay-order").fadeOut();
 
-        const toastLiveExample = document.getElementById('liveToast')
-        const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample);
-        $(".toast-body").html("Submit Success!");
-        toastBootstrap.show();
+          const toastLiveExample = document.getElementById("liveToast");
+          const toastBootstrap =
+            bootstrap.Toast.getOrCreateInstance(toastLiveExample);
+          $(".toast-body").html("Submit Success!");
+          toastBootstrap.show();
+        }
+        console.log("resp:" + response);
       }
-      console.log("resp:" + response);
-    })
-  })
+    );
+  });
 }
 
 $().ready(() => {
   console.log("doc ready.");
 
   $.get("http://localhost:4000/api/pizza", function (data, status) {
-
     let ul = "";
     for (let item of data.data) {
-
-      ul += `<li>
+      ul += `<li class="pizza-item">
         <div>
           <img src="${item.picUrl}" alt="${item.description}" />
-          <div>
+          <div class="pizza-name">
             <span>${item.name}</span>
             <span class="float-right">\$${item.price}</span>
           </div>
           <button type="button" class="order-button btn btn-primary" data-id="${item._id}" data-img="${item.picUrl}" data-price="${item.price}" >Order Now</button>
           <button type="button" class="custom-button btn btn-outline-secondary" data-id="${item._id}" data-img="${item.picUrl}" data-price="${item.price}" >Custom Pizza</button>
         </div>
-      </li>`
+      </li>`;
     }
 
     $("#list_ul").html(ul);
 
     let customDetails = {};
 
-    $('.order-button').click(function (evt) {
+    $(".order-button").click(function (evt) {
       customDetails = {};
       if (!customDetails.totalPrice) {
-        let id = $(this).data('id');
-        let img = $(this).data('img');
-        let price = $(this).data('price');
+        let id = $(this).data("id");
+        let img = $(this).data("img");
+        let price = $(this).data("price");
         customDetails.id = id;
         customDetails.img = img;
         customDetails.price = price;
@@ -109,11 +118,11 @@ $().ready(() => {
       showOrderDialog(customDetails);
     });
 
-    $('.custom-button').click(function (evt) {
+    $(".custom-button").click(function (evt) {
       customDetails = {};
-      let id = $(this).data('id');
-      let img = $(this).data('img');
-      let price = $(this).data('price');
+      let id = $(this).data("id");
+      let img = $(this).data("img");
+      let price = $(this).data("price");
       customDetails.id = id;
       customDetails.img = img;
       customDetails.price = price;
@@ -126,10 +135,13 @@ $().ready(() => {
         console.log("response:" + response.data);
 
         $("#customSize").html("");
-        response.data.map(item => {
-          console.log('i:' + item);
-          $("#customSize").html($("#customSize").html() + `<option value="${item.name}" data-price="${item.price}">${item.name}</option>`)
-        })
+        response.data.map((item) => {
+          console.log("i:" + item);
+          $("#customSize").html(
+            $("#customSize").html() +
+              `<option value="${item.name}" data-price="${item.price}">${item.name}</option>`
+          );
+        });
 
         changePrice(customDetails);
         $("#customPrice").val("$" + customDetails.totalPrice.toFixed(2));
@@ -139,10 +151,13 @@ $().ready(() => {
         console.log("response:" + response.data);
 
         $("#customTopping").html("");
-        response.data.map(item => {
-          console.log('i:' + item);
-          $("#customTopping").html($("#customTopping").html() + `<option value="${item.name}" data-id="${item._id}" data-price="${item.price}">${item.name}</option>`)
-        })
+        response.data.map((item) => {
+          console.log("i:" + item);
+          $("#customTopping").html(
+            $("#customTopping").html() +
+              `<option value="${item.name}" data-id="${item._id}" data-price="${item.price}">${item.name}</option>`
+          );
+        });
 
         changePrice(customDetails);
         $("#customPrice").val("$" + customDetails.totalPrice.toFixed(2));
@@ -151,32 +166,32 @@ $().ready(() => {
       $("#customSize").change(function () {
         changePrice(customDetails);
         $("#customPrice").val("$" + customDetails.totalPrice.toFixed(2));
-      })
+      });
 
       $("#customTopping").change(function () {
         changePrice(customDetails);
         $("#customPrice").val("$" + customDetails.totalPrice.toFixed(2));
-      })
+      });
 
-      $("#overlay-custom").data('id', id);
-      $("#overlay-custom").data('img', img);
-      $("#overlay-custom").data('price', price);
+      $("#overlay-custom").data("id", id);
+      $("#overlay-custom").data("img", img);
+      $("#overlay-custom").data("price", price);
       $("#overlay-custom").fadeIn();
     }); // end click custom
 
     $("#closeOrderDialog").click(function (evt) {
       $("#overlay-order").fadeOut();
-    })
+    });
 
     $("#closeCustomDialog").click(function (evt) {
       $("#overlay-custom").fadeOut();
-    })
+    });
 
     $("#formCustom").submit(function (evt) {
       evt.preventDefault();
-      let id = $("#overlay-custom").data('id');
-      let img = $("#overlay-custom").data('img');
-      let price = $("#overlay-custom").data('price');
+      let id = $("#overlay-custom").data("id");
+      let img = $("#overlay-custom").data("img");
+      let price = $("#overlay-custom").data("price");
       customDetails.id = id;
       customDetails.img = img;
       customDetails.price = price;
@@ -185,4 +200,4 @@ $().ready(() => {
       showOrderDialog(customDetails);
     });
   });
-})
+});
