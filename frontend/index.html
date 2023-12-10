@@ -54,13 +54,25 @@
         </li>
       </ul>
 
+      <div class="toast-container position-fixed top-0 end-0 p-3">
+        <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+          <div class="toast-header">
+            <strong class="me-auto">Hi</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+          </div>
+          <div class="toast-body">
+            Hello, world! This is a toast message.
+          </div>
+        </div>
+      </div>
+
       <div class="overlay" id="overlay-order">
         <div class="dialog">
           <p>Order The Pizza</p>
 
           <img class="dialog-pizza-image" />
 
-          <form class="pay-form row g-3 needs-validation" novalidate>
+          <form id="formOrder" class="pay-form row g-3 needs-validation">
 
             <div class="col-md-4">
               <label for="price" class="form-label">Price</label>
@@ -83,71 +95,76 @@
             <div class="col-md-12"></div>
 
             <div class="col-md-4">
-              <label for="validationCustom01" class="form-label">First name</label>
-              <input type="text" class="form-control" id="validationCustom01" value="" required />
+              <label for="firstName" class="form-label">First name</label>
+              <input type="text" class="form-control" id="firstName" value="" required />
               <div class="valid-feedback">Looks good!</div>
             </div>
             <div class="col-md-4">
-              <label for="validationCustom02" class="form-label">Last name</label>
-              <input type="text" class="form-control" id="validationCustom02" value="" required />
+              <label for="lastName" class="form-label">Last name</label>
+              <input type="text" class="form-control" id="lastName" value="" required />
               <div class="valid-feedback">Looks good!</div>
             </div>
             <div class="col-md-6">
-              <label for="validationCustomUsername" class="form-label">Email</label>
+              <label for="email" class="form-label">Email</label>
               <div class="input-group has-validation">
                 <span class="input-group-text" id="inputGroupPrepend">@</span>
-                <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required />
+                <input type="text" class="form-control" id="email" aria-describedby="inputGroupPrepend" required />
                 <div class="invalid-feedback">Please choose a username.</div>
               </div>
             </div>
             <div class="col-md-6">
-              <label for="validationCustomUsername" class="form-label">Mobile</label>
+              <label for="mobile" class="form-label">Mobile</label>
               <div class="input-group has-validation">
                 <span class="input-group-text" id="inputGroupPrepend">Mobile</span>
-                <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required />
+                <input type="text" class="form-control" id="mobile" aria-describedby="inputGroupPrepend" required />
                 <div class="invalid-feedback">Please choose a username.</div>
               </div>
             </div>
+            <div class="col-md-12">
+              <label for="address" class="form-label">Address</label>
+              <input type="text" class="form-control" id="address" required />
+              <div class="invalid-feedback">Please provide a valid address.</div>
+            </div>
             <div class="col-md-6">
-              <label for="validationCustom03" class="form-label">City</label>
-              <input type="text" class="form-control" id="validationCustom03" required />
+              <label for="city" class="form-label">City</label>
+              <input type="text" class="form-control" id="city" required />
               <div class="invalid-feedback">Please provide a valid city.</div>
             </div>
             <div class="col-md-3">
-              <label for="validationCustom04" class="form-label">State</label>
-              <select class="form-select" id="validationCustom04" required>
+              <label for="state" class="form-label">State</label>
+              <select class="form-select" id="state" required>
                 <option selected value="ON">ON</option>
                 <option disabled>Only support Ontario</option>
               </select>
               <div class="invalid-feedback">Please select a valid state.</div>
             </div>
             <div class="col-md-3">
-              <label for="validationCustom05" class="form-label">Zip</label>
-              <input type="text" class="form-control" id="validationCustom05" required />
+              <label for="zip" class="form-label">Zip</label>
+              <input type="text" class="form-control" id="zip" required />
               <div class="invalid-feedback">Please provide a valid zip.</div>
             </div>
             <label>Payment:</label>
             <div class="col-md-5">
-              <label for="validationCustom05" class="form-label">Owner Name:</label>
-              <input type="text" class="form-control" id="validationCustom05" required />
-              <div class="invalid-feedback">Please provide a valid zip.</div>
+              <label for="cardOwnerName" class="form-label">Owner Name:</label>
+              <input type="text" class="form-control" id="cardOwnerName" required />
+              <div class="invalid-feedback">Please provide a valid Owner Name.</div>
             </div>
             <div class="col-md-7">
-              <label for="validationCustom05" class="form-label">Card Number:</label>
-              <input type="text" class="form-control" id="validationCustom05" required />
-              <div class="invalid-feedback">Please provide a valid zip.</div>
+              <label for="cardNumber" class="form-label">Card Number:</label>
+              <input type="text" class="form-control" id="cardNumber" required />
+              <div class="invalid-feedback">Please provide a valid Card Number.</div>
             </div>
             <div class="col-md-3">
-              <label for="validationCustom05" class="form-label">Expire Date:</label>
+              <label for="expiryDate" class="form-label">Expire Date:</label>
               <input type="text" class="form-control" id="expiryDate" placeholder="MM/YY" required />
             </div>
             <div class="col-md-2">
-              <label for="validationCustom05" class="form-label">CVC</label>
-              <input type="text" class="form-control" id="validationCustom05" required />
-              <div class="invalid-feedback">Please provide a valid zip.</div>
+              <label for="cvcNumber" class="form-label">CVC</label>
+              <input type="text" class="form-control" id="cvcNumber" required />
+              <div class="invalid-feedback">Please provide a valid CVC code.</div>
             </div>
             <div class="col-12">
-              <button class="order-button btn btn-primary" type="submit">Pay Order</button>
+              <button id="orderFormButton" class="btn btn-primary" type="submit">Pay Order</button>
               <button id="closeOrderDialog" type="button" class="btn btn-outline-secondary classOverlay">Cancel</button>
             </div>
           </form>
@@ -183,7 +200,7 @@
             </div>
 
             <div class="col-12">
-              <button class="order-button btn btn-primary" type="submit">Pay Order</button>
+              <button class="btn btn-primary" type="submit">Pay Order</button>
               <button id="closeCustomDialog" type="button" class="btn btn-outline-secondary classOverlay">Cancel</button>
             </div>
           </form>

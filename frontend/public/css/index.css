@@ -14,6 +14,7 @@ main {
   flex-wrap: wrap;
   flex-direction: row;
   margin: 40px auto;
+  padding: 0;
   width: 80%;
 }
 
@@ -74,4 +75,34 @@ li button {
 
 .pay-form {
   text-align: left;
+}
+
+@media (max-width: 1200px) {
+  .img-wrapper > li {
+    width: calc(100% / 3);
+  }
+
+  .img-wrapper {
+    width: 100%;
+  }
+}
+
+@media (max-width: 800px) {
+  .img-wrapper > li {
+    width: calc(100% / 2);
+  }
+
+  .img-wrapper {
+    width: 100%;
+  }
+}
+
+@media (max-width: 500px) {
+  .img-wrapper > li {
+    width: 100%;
+  }
+
+  .img-wrapper {
+    width: 100%;
+  }
 }
