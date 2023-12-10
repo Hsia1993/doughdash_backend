@@ -5,7 +5,7 @@ const fs = require("fs");
 const bootControllers = require("./bootControllers");
 const session = require("express-session");
 
-const frontendDirRelative = "./frontend";
+const frontendDirRelative = "../frontend";
 const htmlDir = path.resolve(__dirname, `${frontendDirRelative}`);
 
 const init = async () => {
@@ -13,7 +13,7 @@ const init = async () => {
     await db();
     const app = new express();
     console.log(__dirname);
-    app.use(express.static('./frontend/public'));
+    app.use(express.static("./frontend/public"));
     app.use(express.json());
     app.use(
       session({
