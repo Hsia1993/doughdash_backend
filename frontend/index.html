@@ -57,9 +57,31 @@
       <div class="overlay" id="overlay-order">
         <div class="dialog">
           <p>Order The Pizza</p>
+
           <img class="dialog-pizza-image" />
 
           <form class="pay-form row g-3 needs-validation" novalidate>
+
+            <div class="col-md-4">
+              <label for="price" class="form-label">Price</label>
+              <input type="text" class="form-control" id="price" value="" disabled />
+              <div class="valid-feedback">Looks good!</div>
+            </div>
+
+            <div id="sizeLayout" hidden class="col-md-4">
+              <label for="size" class="form-label">Size</label>
+              <input type="text" class="form-control" id="size" value="Medium" disabled />
+              <div class="valid-feedback">Looks good!</div>
+            </div>
+
+            <div id="toppingLayout" class="col-md-4">
+              <label for="topping" class="form-label">Topping</label>
+              <input type="text" class="form-control" id="topping" value="" disabled />
+              <div class="valid-feedback">Looks good!</div>
+            </div>
+
+            <div class="col-md-12"></div>
+
             <div class="col-md-4">
               <label for="validationCustom01" class="form-label">First name</label>
               <input type="text" class="form-control" id="validationCustom01" value="" required />
