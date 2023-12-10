@@ -6,14 +6,15 @@ const bootControllers = require("./bootControllers");
 const session = require("express-session");
 
 const frontendDirRelative = "../frontend";
-const htmlDir = path.resolve(__dirname, `${frontendDirRelative}`);
+const frontendDir = path.resolve(__dirname, `${frontendDirRelative}`);
 
 const init = async () => {
   try {
     await db();
     const app = new express();
-    console.log(__dirname);
-    app.use(express.static("./frontend/public"));
+    app.set("view engine", "ejs");
+    app.set("views", frontendDir);
+    app.use(express.static(`${frontendDir}/public`));
     app.use(express.json());
     app.use(
       session({
@@ -22,12 +23,17 @@ const init = async () => {
         saveUninitialized: true,
       })
     );
-    fs.readdirSync(htmlDir)
-      .filter((file) => file.endsWith(".html"))
+    fs.readdirSync(`${frontendDir}/views`)
+      .filter((file) => file.endsWith(".ejs"))
       .forEach((file) => {
         const url = file.split(".")[0];
         app.get(`/${url == "index" ? "" : url}`, (req, res) => {
-          res.sendFile(file, { root: htmlDir });
+          res.render("layouts/base", {
+            content: `${frontendDir}/views/${file}`,
+            title: "",
+            logged: true,
+            userType: "",
+          });
         });
       });
     app.use(express.urlencoded());

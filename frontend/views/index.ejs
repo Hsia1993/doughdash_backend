@@ -1,0 +1,258 @@
+<header class="masthead" style="background-image: url('/imgs/main-bg.jpg')">
+  <div class="container position-relative px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+      <div class="col-md-10 col-lg-8 col-xl-7">
+        <div class="site-heading">
+          <h1>DoughDash</h1>
+          <span class="subheading">Fast pizza delivery</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+<ul id="list_ul" class="img-wrapper">
+  <li>
+    <div>
+      <div hidden>1</div>
+      <img
+        src="https://cache.dominos.com/nolo/ca/en/6_114_14/assets/build/market/CA/_en/images/img/products/larges/S_PIZVX.jpg"
+        alt="${item['description']}"
+      />
+      <div>
+        <span>Name:</span>
+        <span class="float-right">$132</span>
+      </div>
+      <button type="button" class="btn btn-primary" value="1">Order</button>
+      <button type="button" class="custom-button btn btn-outline-secondary">
+        Custom
+      </button>
+    </div>
+  </li>
+</ul>
+
+<div class="toast-container position-fixed top-0 end-0 p-3">
+  <div
+    id="liveToast"
+    class="toast"
+    role="alert"
+    aria-live="assertive"
+    aria-atomic="true"
+  >
+    <div class="toast-header">
+      <strong class="me-auto">Hi</strong>
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="toast"
+        aria-label="Close"
+      ></button>
+    </div>
+    <div class="toast-body">Hello, world! This is a toast message.</div>
+  </div>
+</div>
+
+<div class="overlay" id="overlay-order">
+  <div class="dialog">
+    <p>Order The Pizza</p>
+
+    <img class="dialog-pizza-image" />
+
+    <form id="formOrder" class="pay-form row g-3 needs-validation">
+      <div class="col-md-4">
+        <label for="price" class="form-label">Price</label>
+        <input type="text" class="form-control" id="price" value="" disabled />
+        <div class="valid-feedback">Looks good!</div>
+      </div>
+
+      <div id="sizeLayout" hidden class="col-md-4">
+        <label for="size" class="form-label">Size</label>
+        <input
+          type="text"
+          class="form-control"
+          id="size"
+          value="Medium"
+          disabled
+        />
+        <div class="valid-feedback">Looks good!</div>
+      </div>
+
+      <div id="toppingLayout" class="col-md-4">
+        <label for="topping" class="form-label">Topping</label>
+        <input
+          type="text"
+          class="form-control"
+          id="topping"
+          value=""
+          disabled
+        />
+        <div class="valid-feedback">Looks good!</div>
+      </div>
+
+      <div class="col-md-12"></div>
+
+      <div class="col-md-4">
+        <label for="firstName" class="form-label">First name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="firstName"
+          value=""
+          required
+        />
+        <div class="valid-feedback">Looks good!</div>
+      </div>
+      <div class="col-md-4">
+        <label for="lastName" class="form-label">Last name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="lastName"
+          value=""
+          required
+        />
+        <div class="valid-feedback">Looks good!</div>
+      </div>
+      <div class="col-md-6">
+        <label for="email" class="form-label">Email</label>
+        <div class="input-group has-validation">
+          <span class="input-group-text" id="inputGroupPrepend">@</span>
+          <input
+            type="text"
+            class="form-control"
+            id="email"
+            aria-describedby="inputGroupPrepend"
+            required
+          />
+          <div class="invalid-feedback">Please choose a username.</div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <label for="mobile" class="form-label">Mobile</label>
+        <div class="input-group has-validation">
+          <span class="input-group-text" id="inputGroupPrepend">Mobile</span>
+          <input
+            type="text"
+            class="form-control"
+            id="mobile"
+            aria-describedby="inputGroupPrepend"
+            required
+          />
+          <div class="invalid-feedback">Please choose a username.</div>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <label for="address" class="form-label">Address</label>
+        <input type="text" class="form-control" id="address" required />
+        <div class="invalid-feedback">Please provide a valid address.</div>
+      </div>
+      <div class="col-md-6">
+        <label for="city" class="form-label">City</label>
+        <input type="text" class="form-control" id="city" required />
+        <div class="invalid-feedback">Please provide a valid city.</div>
+      </div>
+      <div class="col-md-3">
+        <label for="state" class="form-label">State</label>
+        <select class="form-select" id="state" required>
+          <option selected value="ON">ON</option>
+          <option disabled>Only support Ontario</option>
+        </select>
+        <div class="invalid-feedback">Please select a valid state.</div>
+      </div>
+      <div class="col-md-3">
+        <label for="zip" class="form-label">Zip</label>
+        <input type="text" class="form-control" id="zip" required />
+        <div class="invalid-feedback">Please provide a valid zip.</div>
+      </div>
+      <label>Payment:</label>
+      <div class="col-md-5">
+        <label for="cardOwnerName" class="form-label">Owner Name:</label>
+        <input type="text" class="form-control" id="cardOwnerName" required />
+        <div class="invalid-feedback">Please provide a valid Owner Name.</div>
+      </div>
+      <div class="col-md-7">
+        <label for="cardNumber" class="form-label">Card Number:</label>
+        <input type="text" class="form-control" id="cardNumber" required />
+        <div class="invalid-feedback">Please provide a valid Card Number.</div>
+      </div>
+      <div class="col-md-3">
+        <label for="expiryDate" class="form-label">Expire Date:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="expiryDate"
+          placeholder="MM/YY"
+          required
+        />
+      </div>
+      <div class="col-md-2">
+        <label for="cvcNumber" class="form-label">CVC</label>
+        <input type="text" class="form-control" id="cvcNumber" required />
+        <div class="invalid-feedback">Please provide a valid CVC code.</div>
+      </div>
+      <div class="col-12">
+        <button id="orderFormButton" class="btn btn-primary" type="submit">
+          Pay Order
+        </button>
+        <button
+          id="closeOrderDialog"
+          type="button"
+          class="btn btn-outline-secondary classOverlay"
+        >
+          Cancel
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="overlay" id="overlay-custom">
+  <div class="dialog">
+    <p>Custom The Pizza</p>
+    <img id="imageDialog" class="dialog-pizza-image" />
+
+    <form id="formCustom" class="pay-form row g-3 needs-validation" novalidate>
+      <div class="col-md-5">
+        <label for="pizzaSize" class="form-label">Size:</label>
+
+        <select
+          id="customSize"
+          class="form-select"
+          aria-label="Default select example"
+        ></select>
+      </div>
+
+      <div class="col-md-5">
+        <label for="pizzaSize" class="form-label">Topping:</label>
+
+        <select
+          id="customTopping"
+          class="form-select"
+          aria-label="Default select example"
+        ></select>
+      </div>
+
+      <div class="col-md-4">
+        <label for="customPrice" class="form-label">Price:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="customPrice"
+          value=""
+          disabled
+        />
+        <div class="valid-feedback">Looks good!</div>
+      </div>
+
+      <div class="col-12">
+        <button class="btn btn-primary" type="submit">Pay Order</button>
+        <button
+          id="closeCustomDialog"
+          type="button"
+          class="btn btn-outline-secondary classOverlay"
+        >
+          Cancel
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
