@@ -5,15 +5,7 @@
       <img src="/imgs/pizza.png" alt="" class="logo" width="48px" />
       DoughDash</a
     >
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarResponsive"
-      aria-controls="navbarResponsive"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
       Menu
       <i class="fas fa-bars"></i>
     </button>
@@ -21,9 +13,10 @@
       <ul class="navbar-nav ms-auto py-4 py-lg-0">
         <% if (logged) { %>
         <li class="nav-item">
-          <a class="nav-link px-lg-3 py-3 py-lg-4" href="/api/logout"
-            >Log out</a
-          >
+          <a class="nav-link px-lg-3 py-3 py-lg-4" href="/orders">Orders</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link px-lg-3 py-3 py-lg-4" href="/api/logout">Log out</a>
         </li>
         <% } %>
       </ul>

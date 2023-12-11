@@ -140,7 +140,7 @@ $().ready(() => {
           console.log("i:" + item);
           $("#customSize").html(
             $("#customSize").html() +
-              `<option value="${item.name}" data-price="${item.price}">${item.name}</option>`
+            `<option value="${item.name}" data-id="${item._id}" data-price="${item.price}">${item.name}</option>`
           );
         });
 
@@ -156,7 +156,7 @@ $().ready(() => {
           console.log("i:" + item);
           $("#customTopping").html(
             $("#customTopping").html() +
-              `<option value="${item.name}" data-id="${item._id}" data-price="${item.price}">${item.name}</option>`
+            `<option value="${item.name}" data-id="${item._id}" data-price="${item.price}">${item.name}</option>`
           );
         });
 
