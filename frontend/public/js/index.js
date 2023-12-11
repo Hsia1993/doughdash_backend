@@ -85,7 +85,7 @@ function showOrderDialog(customDetails) {
 $().ready(() => {
   console.log("doc ready.");
 
-  $.get("http://localhost:4000/api/pizza", function (data, status) {
+  $.get("/api/pizza", function (data, status) {
     let ul = "";
     for (let item of data.data) {
       ul += `<li class="pizza-item">
@@ -132,7 +132,7 @@ $().ready(() => {
 
       $(".dialog-pizza-image").attr("src", img);
 
-      $.get("http://localhost:4000/api/size", function (response, status) {
+      $.get("/api/size", function (response, status) {
         console.log("response:" + response.data);
 
         $("#customSize").html("");
@@ -148,7 +148,7 @@ $().ready(() => {
         $("#customPrice").val("$" + customDetails.totalPrice.toFixed(2));
       });
 
-      $.get("http://localhost:4000/api/topping", function (response, status) {
+      $.get("/api/topping", function (response, status) {
         console.log("response:" + response.data);
 
         $("#customTopping").html("");
