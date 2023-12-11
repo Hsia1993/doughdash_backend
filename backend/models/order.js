@@ -7,11 +7,11 @@ const pizzaOrderSchema = new Schema({
   toppings: [{ type: mongoose.Schema.Types.ObjectId, ref: "Topping" }],
   name: { type: String },
   address: { type: String },
-  user: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
 });
 
 const orderSchema = new Schema({
   items: [pizzaOrderSchema],
+  user: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
 });
 
 module.exports = mongoose.model("Order", orderSchema);

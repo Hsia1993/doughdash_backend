@@ -53,7 +53,7 @@ function showOrderDialog(customDetails) {
       data: JSON.stringify({
         pizza: customDetails.id,
         size: customDetails.sizeId,
-        topping: [customDetails.toppingId],
+        topping: customDetails.toppingId ? [customDetails.toppingId] : [],
         name: $("#firstName").val() + " " + $("#lastName").val(),
         address:
           $("#address").val() +
@@ -77,7 +77,7 @@ function showOrderDialog(customDetails) {
         }
         console.log("resp:" + response);
       },
-      contentType: "JSON",
+      contentType: "application/json",
     });
   });
 }
@@ -140,7 +140,7 @@ $().ready(() => {
           console.log("i:" + item);
           $("#customSize").html(
             $("#customSize").html() +
-            `<option value="${item.name}" data-id="${item._id}" data-price="${item.price}">${item.name}</option>`
+              `<option value="${item.name}" data-id="${item._id}" data-price="${item.price}">${item.name}</option>`
           );
         });
 
@@ -156,7 +156,7 @@ $().ready(() => {
           console.log("i:" + item);
           $("#customTopping").html(
             $("#customTopping").html() +
-            `<option value="${item.name}" data-id="${item._id}" data-price="${item.price}">${item.name}</option>`
+              `<option value="${item.name}" data-id="${item._id}" data-price="${item.price}">${item.name}</option>`
           );
         });
 
