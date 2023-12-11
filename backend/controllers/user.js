@@ -20,12 +20,13 @@ const login = async (req, res) => {
         req.session.userId = data.id;
         res.status(200).send({ data: { username } });
       } else {
-        throw "";
+        throw "Wrong password";
       }
     } else {
-      throw "";
+      throw "User not exist";
     }
   } catch (e) {
+    console.log(e);
     res.status(400).send({ msg: "Username do not exist or wrong password" });
   }
 };

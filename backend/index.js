@@ -28,11 +28,21 @@ const init = async () => {
       .forEach((file) => {
         const url = file.split(".")[0];
         app.get(`/${url == "index" ? "" : url}`, (req, res) => {
+          if (req.session && req.session.userId) {
+            if (req.path == "/login" || req.path == "/signup") {
+              res.redirect("/");
+              return;
+            }
+          } else {
+            if (req.path == "/") {
+              res.redirect("/login");
+              return;
+            }
+          }
           res.render("layouts/base", {
             content: `${frontendDir}/views/${file}`,
-            title: "",
-            logged: true,
-            userType: "",
+            title: "DoughDash",
+            logged: !!req.session.userId,
           });
         });
       });

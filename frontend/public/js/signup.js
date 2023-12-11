@@ -12,7 +12,6 @@ $(document).ready(() => {
       username: [required],
       password: [required],
       repeatedPassword: [required, sameWithPassword],
-      userType: [],
     }),
     onSubmit: (data) => {
       $.ajax({
