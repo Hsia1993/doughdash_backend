@@ -34,7 +34,7 @@ const init = async () => {
               return;
             }
           } else {
-            if (req.path != "/login") {
+            if (req.path == "/") {
               res.redirect("/login");
               return;
             }
