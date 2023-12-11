@@ -2,10 +2,6 @@ const orderModel = require("../models/order");
 
 const createOrder = async (req, res) => {
   try {
-    console.log({
-      items: [req.body],
-      user: req.session.userId,
-    });
     const data = await orderModel.create({
       items: [req.body],
       user: req.session.userId,
@@ -17,9 +13,22 @@ const createOrder = async (req, res) => {
 };
 const getOrderList = async (req, res) => {
   try {
-    const data = await orderModel.find({
-      user: req.session.userId,
-    });
+    const data = await orderModel
+      .find({
+        user: req.session.userId,
+      })
+      .populate("user")
+      .populate({
+        path: "items",
+        populate: [
+          "pizza",
+          "size",
+          {
+            path: "toppings",
+            populate: "topping",
+          },
+        ],
+      });
     res.status(200).send({ data });
   } catch (e) {
     res.status(400).send({ msg: e.message });
