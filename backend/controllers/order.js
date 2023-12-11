@@ -2,6 +2,10 @@ const orderModel = require("../models/order");
 
 const createOrder = async (req, res) => {
   try {
+    console.log({
+      ...req.body,
+      user: req.session.userId,
+    });
     const data = await orderModel.create({
       ...req.body,
       user: req.session.userId,

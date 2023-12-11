@@ -49,23 +49,23 @@ function showOrderDialog(customDetails) {
 
   $("#formOrder").submit(function (evt) {
     evt.preventDefault();
-    $.post(
-      "http://localhost:4000/api/order",
-      {
+    $.ajax("/api/order", {
+      data: JSON.stringify({
         pizza: customDetails.id,
         size: customDetails.sizeId,
-        topping: customDetails.toppingId,
-        name: $("#firstName") + " " + $("#lastName"),
+        topping: [customDetails.toppingId],
+        name: $("#firstName").val() + " " + $("#lastName").val(),
         address:
-          $("#address") +
+          $("#address").val() +
           ", " +
-          $("#city") +
+          $("#city").val() +
           ", " +
-          $("#state") +
+          $("#state").val() +
           " " +
-          $("#zip"),
-      },
-      function (response, status) {
+          $("#zip").val(),
+      }),
+      type: "post",
+      success: function (response, status) {
         if (status == "success") {
           $("#overlay-order").fadeOut();
 
@@ -76,8 +76,9 @@ function showOrderDialog(customDetails) {
           toastBootstrap.show();
         }
         console.log("resp:" + response);
-      }
-    );
+      },
+      contentType: "JSON",
+    });
   });
 }
 
