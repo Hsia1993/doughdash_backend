@@ -1,24 +1,15 @@
 $().ready(() => {
-  console.log("orders ready");
-
+  $("#exportPdf").click(() => {
+    window.open("/api/orders/export");
+  });
   $.get("/api/orders", function (response, status) {
-    console.log("response:" + JSON.stringify(response));
-
     let ol = "";
     response.data.forEach((ps) => {
       ps.items.forEach((item) => {
-        let pizza = item.pizza;
-        let size = item.size;
-        let topping = item.topping?.name;
-
-        let price = pizza.price;
-        if (size) {
-          price += size.price;
-          size = size.name;
-        } else {
-          size = "";
-        }
-
+        const { pizza, size, topping } = item;
+        let price = (pizza.price + size.price + (topping?.price || 0)).toFixed(
+          2
+        );
         ol += `
                     <tr>
                         <td><img src="${
@@ -26,11 +17,11 @@ $().ready(() => {
                         }" class="img-thumbnail" alt="${
           pizza.description
         }" /></td>
-                        <td>${pizza.name}</td>
-                        <td>${size}</td>
-                        <td>${topping || ''}</td>
-                        <td>${price}</td>
-                        <td>${item.address ? item.address : ""}</td>
+                        <td class="align-middle">${pizza.name}</td>
+                        <td class="align-middle">${size.name || ""}</td>
+                        <td class="align-middle">${topping?.name || ""}</td>
+                        <td class="align-middle">${price}</td>
+                        <td class="align-middle">${item.address || ""}</td>
                     </tr>
                 `;
       });

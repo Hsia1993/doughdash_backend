@@ -12,9 +12,17 @@
 </header>
 
 <div class="img-wrapper">
-  <div>
+  <div class="order-page-title">
     <h2 class="mt-4 mb-4 d-inline-block">Pizza Orders</h2>
-    <button id="importPDF" type="button" class="btn btn-info ms-4" data-bs-dismiss="toast" aria-label="">Import PDF</button>
+    <button
+      id="exportPdf"
+      type="button"
+      class="order-button btn btn-primary"
+      data-bs-dismiss="toast"
+      aria-label=""
+    >
+      Export PDF
+    </button>
   </div>
 
   <table class="table">
@@ -28,24 +36,26 @@
         <th>Address</th>
       </tr>
     </thead>
-    <tbody id="tableBody">
-      <tr>
-        <td><img src="pizza2.jpg" alt="Pizza 2" class="img-thumbnail" /></td>
-        <td>Pizza 2</td>
-        <td>Description</td>
-        <td>Midium</td>
-        <td></td>
-        <td>$20.00</td>
-      </tr>
-    </tbody>
+    <tbody id="tableBody"></tbody>
   </table>
 </div>
 
 <div class="toast-container position-fixed top-0 end-0 p-3">
-  <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+  <div
+    id="liveToast"
+    class="toast"
+    role="alert"
+    aria-live="assertive"
+    aria-atomic="true"
+  >
     <div class="toast-header">
       <strong class="me-auto">Hi</strong>
-      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="toast"
+        aria-label="Close"
+      ></button>
     </div>
     <div class="toast-body">Hello, world! This is a toast message.</div>
   </div>

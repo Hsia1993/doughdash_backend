@@ -1,131 +1,135 @@
 body {
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
+  font-family: "Arial", sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
 header {
-    background-color: #d8d6d6;
-    color: #4a4a4a;
-    padding: 15px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  background-color: #d8d6d6;
+  color: #4a4a4a;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .logo {
-    font-size: 24px;
-    font-weight: bold;
+  font-size: 24px;
+  font-weight: bold;
 }
 
 .logo > img {
-    width: 60px;
-    height: 60px;
+  width: 60px;
+  height: 60px;
 }
 
 .hero > img {
-    width: 200px;
-    height: 110px;
+  width: 200px;
+  height: 110px;
 }
 
 nav ul {
-    list-style: none;
-    display: flex;
+  list-style: none;
+  display: flex;
 }
 
 nav ul li {
-    margin-right: 20px;
+  margin-right: 20px;
 }
 
 nav ul li a {
-    text-decoration: none;
-    color: #1d1d1d;
+  text-decoration: none;
+  color: #1d1d1d;
 }
 
 .menu-icon {
-    display: none;
-    cursor: pointer;
+  display: none;
+  cursor: pointer;
 }
 
 .bar {
-    width: 25px;
-    height: 3px;
-    background-color: #1d1d1d;
-    margin: 6px 0;
+  width: 25px;
+  height: 3px;
+  background-color: #1d1d1d;
+  margin: 6px 0;
 }
 
 .card {
-    width: 70%;
-    margin: 10% auto;
-    border: 1px solid #ddd;
-    border-radius: 20px;
+  width: 70%;
+  margin: 10% auto;
+  border: 1px solid #ddd;
+  border-radius: 20px;
 }
 
 .card-header {
-    background-color: #ccc;
-    text-align: center;
-    padding: 10px;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
+  background-color: #ccc;
+  text-align: center;
+  padding: 10px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
 }
 
 .card-header h3 {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .form-control-login {
-    padding: 20px;
+  padding: 20px;
 }
 
 .form-group-login {
-    margin-bottom: 15px;
+  margin-bottom: 15px;
 }
 
-
 .form-input-login {
-    width: calc(100% - 12px);
-    height: 30px;
-    padding: 5px;
-    box-sizing: border-box;
+  width: calc(100% - 12px);
+  height: 30px;
+  padding: 5px;
+  box-sizing: border-box;
 }
 
 .form-control-login input[type="submit"] {
-    width: 100%;
-    padding: 10px;
-    box-sizing: border-box;
-    background-color: #4caf50;
-    color: white;
-    border: none;
-    border-radius: 10px;
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 10px;
+}
+.order-page-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }
 
-
 @media screen and (max-width: 768px) {
-    header {
-        flex-direction: column;
-        text-align: center;
-    }
+  header {
+    flex-direction: column;
+    text-align: center;
+  }
 
-    .menu-icon {
-        display: block;
-    }
+  .menu-icon {
+    display: block;
+  }
 
-    #nav-bar {
-        display: none;
-    }
+  #nav-bar {
+    display: none;
+  }
 
-    #nav-bar.active {
-        display: block;
-    }
+  #nav-bar.active {
+    display: block;
+  }
 
-    nav ul {
-        list-style: none;
-        display: flex;
-        flex-direction: column;
-    }
+  nav ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+  }
 
-    nav ul li {
-        margin-right: 0;
-        margin-bottom: 10px;
-    }
+  nav ul li {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
 }
