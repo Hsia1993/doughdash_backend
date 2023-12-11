@@ -53,7 +53,7 @@ function showOrderDialog(customDetails) {
       data: JSON.stringify({
         pizza: customDetails.id,
         size: customDetails.sizeId,
-        topping: customDetails.toppingId ? [customDetails.toppingId] : [],
+        topping: customDetails.toppingId,
         name: $("#firstName").val() + " " + $("#lastName").val(),
         address:
           $("#address").val() +

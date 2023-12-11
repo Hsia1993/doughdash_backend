@@ -4,7 +4,7 @@ const { Schema } = mongoose;
 const pizzaOrderSchema = new Schema({
   pizza: { type: mongoose.Schema.Types.ObjectId, ref: "Pizza", required: true },
   size: { type: mongoose.Schema.Types.ObjectId, ref: "Size", required: true },
-  toppings: [{ type: mongoose.Schema.Types.ObjectId, ref: "Topping" }],
+  topping: { type: mongoose.Schema.Types.ObjectId, ref: "Topping" },
   name: { type: String },
   address: { type: String },
 });

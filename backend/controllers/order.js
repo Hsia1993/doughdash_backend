@@ -20,14 +20,7 @@ const getOrderList = async (req, res) => {
       .populate("user")
       .populate({
         path: "items",
-        populate: [
-          "pizza",
-          "size",
-          {
-            path: "toppings",
-            populate: "topping",
-          },
-        ],
+        populate: ["pizza", "size", "topping"],
       });
     res.status(200).send({ data });
   } catch (e) {
