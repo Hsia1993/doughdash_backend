@@ -5,8 +5,7 @@ const userSchema = new Schema({
   password: String,
   username: { type: String, unique: [true, "Username existed!"] },
 });
-
-userSchema.pre("save", async function (next) {
+async function hashPassword(next) {
   const user = this;
   try {
     if (user.isModified("password")) {
@@ -17,5 +16,6 @@ userSchema.pre("save", async function (next) {
   } catch (e) {
     return next(e);
   }
-});
+}
+userSchema.pre("save", hashPassword);
 module.exports = mongoose.model("User", userSchema);
