@@ -1,3 +1,6 @@
+// Dongxu Xia, Zhaoning Li, Sahir Prajapati 
+// 8886742 / 8913790 / 8887839 
+
 const sizeModel = require("../models/size");
 
 const getSizeList = async (req, res) => {

@@ -1,3 +1,6 @@
+// Dongxu Xia, Zhaoning Li, Sahir Prajapati 
+// 8886742 / 8913790 / 8887839 
+
 const puppeteer = require("puppeteer");
 const ejs = require("ejs");
 const fs = require("fs");
