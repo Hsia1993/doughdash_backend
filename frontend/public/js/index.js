@@ -1,3 +1,5 @@
+const sizeList = [];
+
 function changePrice(customDetails, fromCustom = true) {
   let totalPrice = customDetails.price;
 
@@ -38,12 +40,20 @@ function showOrderDialog(customDetails) {
     $("#price").val(customDetails.price.toFixed(2));
   }
 
-  $("#sizeLayout").attr("hidden", customDetails.topping == undefined);
+  let sizeName = "";
+  let sizeId = "";
+  if (customDetails.size) {
+    sizeName = customDetails.size;
+    sizeId = customDetails.sizeId;
+  } else {
+    sizeName = sizeList[2].name;
+    sizeId = sizeList[2]._id;
+  }
+
   $("#toppingLayout").attr("hidden", customDetails.topping == undefined);
-  $("#size").val(customDetails.size);
+  $("#size").val(sizeName);
   $("#topping").val(customDetails.topping);
 
-  $("#topping").val(customDetails.topping);
   $("#overlay-order").data("price", customDetails.totalPrice);
   $("#overlay-order").fadeIn();
 
@@ -52,7 +62,7 @@ function showOrderDialog(customDetails) {
     $.ajax("/api/order", {
       data: JSON.stringify({
         pizza: customDetails.id,
-        size: customDetails.sizeId,
+        size: sizeId,
         topping: customDetails.toppingId,
         name: $("#firstName").val() + " " + $("#lastName").val(),
         address:
@@ -77,6 +87,13 @@ function showOrderDialog(customDetails) {
         }
         console.log("resp:" + response);
       },
+      error: function (request, status, error) {
+        const toastLiveExample = document.getElementById("liveToast");
+        const toastBootstrap =
+          bootstrap.Toast.getOrCreateInstance(toastLiveExample);
+        $(".toast-body").html("Request Failed!");
+        toastBootstrap.show();
+      },
       contentType: "application/json",
     });
   });
@@ -84,6 +101,12 @@ function showOrderDialog(customDetails) {
 
 $().ready(() => {
   console.log("doc ready.");
+
+  $.get("/api/size", function (response, status) {
+    response.data.map((item) => {
+      sizeList.push(item);
+    });
+  });
 
   $.get("/api/pizza", function (data, status) {
     let ul = "";
@@ -129,24 +152,17 @@ $().ready(() => {
       customDetails.price = price;
       changePrice(customDetails);
       $("#customPrice").val("$" + customDetails.totalPrice.toFixed(2));
-
       $(".dialog-pizza-image").attr("src", img);
 
-      $.get("/api/size", function (response, status) {
-        console.log("response:" + response.data);
-
-        $("#customSize").html("");
-        response.data.map((item) => {
-          console.log("i:" + item);
-          $("#customSize").html(
-            $("#customSize").html() +
-              `<option value="${item.name}" data-id="${item._id}" data-price="${item.price}">${item.name}</option>`
-          );
-        });
-
-        changePrice(customDetails);
-        $("#customPrice").val("$" + customDetails.totalPrice.toFixed(2));
+      sizeList.forEach(item => {
+        console.log("i:" + item);
+        $("#customSize").html(
+          $("#customSize").html() +
+          `<option value="${item.name}" data-id="${item._id}" data-price="${item.price}">${item.name}</option>`
+        );
       });
+      changePrice(customDetails);
+      $("#customPrice").val("$" + customDetails.totalPrice.toFixed(2));
 
       $.get("/api/topping", function (response, status) {
         console.log("response:" + response.data);
@@ -156,7 +172,7 @@ $().ready(() => {
           console.log("i:" + item);
           $("#customTopping").html(
             $("#customTopping").html() +
-              `<option value="${item.name}" data-id="${item._id}" data-price="${item.price}">${item.name}</option>`
+            `<option value="${item.name}" data-id="${item._id}" data-price="${item.price}">${item.name}</option>`
           );
         });
 
